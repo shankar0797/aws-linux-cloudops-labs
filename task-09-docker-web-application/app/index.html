@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudOps Docker Demo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        header {
+            background: #12304a;
+            color: white;
+            padding: 28px 20px;
+            text-align: center;
+        }
+        main {
+            max-width: 760px;
+            margin: 45px auto;
+            padding: 28px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px #00000012;
+        }
+        .status {
+            color: #15803d;
+            font-weight: bold;
+        }
+        li { margin: 12px 0; }
+        footer {
+            text-align: center;
+            color: #64748b;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CloudOps Docker Demo</h1>
+        <p>A web application running inside a Docker container on AWS EC2</p>
+    </header>
+    <main>
+        <h2>Deployment Successful!</h2>
+        <p class="status">Application status: Running</p>
+        <h3>Technologies Used</h3>
+        <ul>
+            <li>Amazon EC2 — cloud compute</li>
+            <li>Docker — image and container runtime</li>
+            <li>Nginx — web server</li>
+            <li>HTTP — application access</li>
+        </ul>
+        <p>This page is served by Nginx from a Docker container.</p>
+    </main>
+    <footer>Task 9 | AWS Linux & CloudOps Hands-On Labs</footer>
+</body>
+</html>

@@ -1,288 +1,146 @@
-\# Task 9: Docker Web Application Cheatsheet
+# Task 9: Docker Web Application — Cheatsheet
 
-
-
-\## Build and Image Management
-
-
+## 1. Docker Image Commands
 
 ```bash
-
-\# Build an image from the current directory
-
+# Build an image
 sudo docker build -t cloudops-webapp:1.0 .
 
-
-
-\# List local images
-
+# List images
 sudo docker images
 
-
-
-\# Inspect image details
-
+# Inspect an image
 sudo docker image inspect cloudops-webapp:1.0
-
 ```
 
-
-
-\## Container Management
-
-
+## 2. Container Commands
 
 ```bash
+# Run the application
+sudo docker run -d \
+  --name cloudops-webapp \
+  --restart unless-stopped \
+  -p 8080:80 \
+  cloudops-webapp:1.0
 
-\# Start the container
-
-sudo docker run -d --name cloudops-webapp --restart unless-stopped -p 8080:80 cloudops-webapp:1.0
-
-
-
-\# List running containers
-
+# List running containers
 sudo docker ps
 
-
-
-\# List all containers, including stopped containers
-
+# List all containers
 sudo docker ps -a
 
-
-
-\# View application logs
-
+# View logs
 sudo docker logs cloudops-webapp
 
-
-
-\# Follow logs in real time
-
+# Follow logs
 sudo docker logs -f cloudops-webapp
 
+# Inspect container configuration
+sudo docker inspect cloudops-webapp
 
-
-\# Stop the container
-
+# Stop and start the container
 sudo docker stop cloudops-webapp
-
-
-
-\# Start an existing stopped container
-
 sudo docker start cloudops-webapp
-
-
-
-\# Remove a stopped container
-
-sudo docker rm cloudops-webapp
-
 ```
 
-
-
-\## HTTP Testing
-
-
+## 3. HTTP Validation
 
 ```bash
-
-\# Test from the EC2 instance
-
+# Test from the EC2 host
 curl -i http://localhost:8080
 
-
-
-\# Fetch only response headers
-
+# Show response headers
 curl -I http://localhost:8080
 
-
-
-\# Test from the EC2 instance with verbose connection details
-
+# Show detailed connection information
 curl -v http://localhost:8080
-
 ```
-
-
 
 Expected successful response:
 
-
-
 ```text
-
 HTTP/1.1 200 OK
-
 Content-Type: text/html
-
 ```
 
-
-
-\## Port Mapping
-
-
+## 4. Port Mapping
 
 ```text
-
-\-p 8080:80
-
-&#x20;  |    |
-
-&#x20;  |    +-- Container port (Nginx)
-
-&#x20;  +------- EC2 host port
-
+-p 8080:80
+   |    |
+   |    +-- Container port: 80
+   +------- EC2 host port: 8080
 ```
 
-
-
-Users access the application through:
-
-
+Public endpoint:
 
 ```text
-
 http://PUBLIC-IP:8080
-
 ```
 
+Replace `PUBLIC-IP` with the actual public IPv4 address of the instance.
 
+Remember: `EXPOSE 80` documents a container port; `-p 8080:80` publishes it through the Docker host.
 
-The EC2 security group and network configuration must allow the required inbound traffic.
+## 5. Quick Troubleshooting
 
+| Symptom | Commands and checks |
+|---|---|
+| Container stopped | `sudo docker ps -a` and `sudo docker logs cloudops-webapp` |
+| Local HTTP fails | `curl -v http://localhost:8080`; check `sudo docker ps` |
+| Port conflict | `sudo ss -lntp` and inspect existing container mappings |
+| Wrong page appears | Verify `app/index.html`, rebuild the image, recreate the container |
+| Public endpoint times out | Check public IP, security group, subnet routing, and container port mapping |
+| Docker daemon unavailable | `sudo systemctl status docker` |
 
-
-\## Troubleshooting
-
-
-
-\### Container exits or keeps restarting
-
-
-
-```bash
-
-sudo docker ps -a
-
-sudo docker logs cloudops-webapp
-
-sudo docker inspect cloudops-webapp
-
-```
-
-
-
-\### Port conflict
-
-
+## 6. Rebuild After an HTML Change
 
 ```bash
-
-sudo docker ps
-
-sudo ss -lntp
-
-```
-
-
-
-Choose a free host port if port `8080` is already occupied. Update the security group and browser URL to match.
-
-
-
-\### Image changes are not visible
-
-
-
-Rebuild the image and recreate the container when necessary:
-
-
-
-```bash
-
+# Rebuild the image
 sudo docker build -t cloudops-webapp:1.0 .
 
+# Replace the existing container
 sudo docker stop cloudops-webapp
-
 sudo docker rm cloudops-webapp
 
-sudo docker run -d --name cloudops-webapp --restart unless-stopped -p 8080:80 cloudops-webapp:1.0
+# Start a new container from the rebuilt image
+sudo docker run -d \
+  --name cloudops-webapp \
+  --restart unless-stopped \
+  -p 8080:80 \
+  cloudops-webapp:1.0
 
+# Validate the new container
+sudo docker ps
+curl -i http://localhost:8080
 ```
 
+Only remove the intended container. Check its name and dependencies before executing removal commands.
 
+## 7. Interview Revision
 
-\### Browser times out
+**What is a Docker image?**  
+A template used to create containers.
 
+**What is a Docker container?**  
+An isolated running or stopped instance of an image.
 
+**What does `-p 8080:80` do?**  
+It maps host port 8080 to container port 80.
 
-Check, in order:
+**Does `EXPOSE 80` publish the port?**  
+No. It documents the intended container port.
 
+**How do you troubleshoot a container that is not serving HTTP?**  
+Check container status, logs, port mapping, local `curl`, and network/security-group rules.
 
+**Why does local access work but public access fail?**  
+The application may be running correctly, but the public IP, security group, routing, or external network path may be incorrect.
 
-1\. The correct public IPv4 address.
+## 8. Security Reminders
 
-2\. The container status and port mapping.
-
-3\. The local `curl` response.
-
-4\. The EC2 security group's inbound TCP rule for port `8080`.
-
-5\. The instance's subnet routing and public connectivity.
-
-
-
-\## Interview Quick Answers
-
-
-
-\*\*What is a Docker image?\*\*  
-
-A packaged template containing the application and its required filesystem and runtime configuration.
-
-
-
-\*\*What is a Docker container?\*\*  
-
-A running or stopped instance created from a Docker image.
-
-
-
-\*\*What does `-p 8080:80` mean?\*\*  
-
-It maps host port `8080` to container port `80`.
-
-
-
-\*\*Does `EXPOSE 80` publish the port?\*\*  
-
-No. It documents the intended container port. Port publishing is configured with `-p` or another networking method.
-
-
-
-\*\*How do you troubleshoot a container that is not serving HTTP?\*\*  
-
-Check `docker ps -a`, container logs, port mappings, local `curl`, and the EC2 security group and network path.
-
-
-
-\*\*Why use Nginx?\*\*  
-
-Nginx is a web server that serves the static HTML page from inside the container.
-
-
-
-\*\*What is the difference between local and public testing?\*\*  
-
-Local testing verifies the service from the EC2 host. Public testing also depends on the instance's network reachability, public IP, and inbound security rules.
-
-
-
-
+- Restrict port 8080 to trusted source IPs.
+- Use HTTPS for production workloads.
+- Do not store secrets in the image or repository.
+- Stop or remove lab resources when no longer required.
 

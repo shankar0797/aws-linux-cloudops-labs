@@ -1,145 +1,165 @@
-# ☁️ AWS Linux & CloudOps Labs
+# AWS Linux & CloudOps Labs
 
-**Hands-on AWS infrastructure | Linux Administration | Networking | Security | Monitoring**
+A hands-on portfolio demonstrating AWS infrastructure, Linux administration, cloud networking, security, load balancing, auto scaling, monitoring, Docker deployment, and operational troubleshooting.
 
-A portfolio of eight practical labs focused on building, configuring, validating, and troubleshooting AWS infrastructure.
+## About This Repository
 
-[Projects](#-projects) · [Technical Skills](#-technical-skills) · [Repository Structure](#-repository-structure) · [Learning Outcomes](#-learning-outcomes)
+This repository contains practical cloud and Linux labs designed to strengthen AWS CloudOps, Cloud Support, Infrastructure Operations, and troubleshooting skills.
 
----
+Each project includes implementation documentation and may include a task-specific cheatsheet, configuration files, and screenshots demonstrating the results.
 
-## 👋 About This Portfolio
+## Technology Stack
 
-This repository documents hands-on exercises relevant to **AWS Cloud Operations, Cloud Support Engineering, L2 Cloud Engineering, and Linux Administration**.
-
-Each project includes implementation documentation, key configuration details, validation steps, troubleshooting guidance, and screenshots where available.
-
-## 🧰 Technical Skills
-
-![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-Administration-black?logo=linux&logoColor=white)
-![Networking](https://img.shields.io/badge/Networking-VPC%20%7C%20ALB-blue)
-![Security](https://img.shields.io/badge/Security-IAM%20%7C%20Encryption-green)
-![Monitoring](https://img.shields.io/badge/Monitoring-CloudWatch-purple)
-
+- **Cloud Platform:** Amazon Web Services (AWS)
+- **Operating Systems:** Amazon Linux 2023, Linux
 - **Compute:** Amazon EC2
-- **Linux:** Users, groups, sudo, SSH authentication, Nginx
-- **Networking:** VPC, subnets, route tables, security groups, Network ACLs
-- **Storage:** EBS volumes, encryption, Amazon S3
-- **Security:** IAM roles, policies, least privilege, private resource access
-- **Availability:** Application Load Balancer, target groups, health checks
-- **Scaling:** Launch templates, Auto Scaling Groups, target tracking
-- **Monitoring:** CloudWatch metrics, dashboards, alarms, logs, SNS
-- **Operations:** Systems Manager Run Command, Parameter Store, troubleshooting
+- **Storage:** Amazon EBS, Amazon S3
+- **Networking:** VPC, subnets, route tables, Internet Gateway, NAT Gateway, Security Groups, Network ACLs
+- **Load Balancing and Scaling:** Application Load Balancer, Auto Scaling Groups
+- **Identity and Security:** IAM, SSH authentication, EBS encryption, private S3 access
+- **Monitoring:** Amazon CloudWatch, CloudWatch Agent, Amazon SNS
+- **Containers:** Docker, Nginx
+- **Validation Tools:** AWS CLI, Linux commands, curl
+- **Documentation:** Markdown, screenshots, troubleshooting guides
 
-## 🚀 Projects
+## Hands-On Projects
 
-| # | Project | What It Covers | Documentation |
+| Task | Project | Key Skills | Documentation |
 |---|---|---|---|
-| 01 | Linux Users & SSH Authentication | Linux accounts, sudo privileges, SSH keys, file permissions | [README](./task-01-linux-users-ssh/README.md) · [Cheatsheet](./task-01-linux-users-ssh/CHEATSHEET.md) |
-| 02 | Nginx on EC2 | Linux web server setup, service management, HTTP validation | [README](./task-02-nginx-ec2/README.md) |
-| 03 | Encrypted EBS Volume | Block storage, encryption, volume operations | [README](./task-03-encrypted-ebs-volume/README.md) |
-| 04 | Nginx Application Load Balancer | Listeners, target groups, health checks | [README](./task-04-nginx-alb/README.md) |
-| 05 | Multi-Tier VPC Architecture | Public/private subnet design, routing, network segmentation | [README](./task-05-multi-tier-vpc/README.md) |
-| 06 | IAM & Private S3 Access | IAM permissions, S3 access control, least privilege | [README](./task-06-iam-private-s3-access/README.md) |
-| 07 | ALB & Auto Scaling | Launch templates, Auto Scaling, health checks, target tracking | [README](./task-07-alb-auto-scaling/README.md) |
-| 08 | CloudWatch Monitoring & SNS | Custom metrics, dashboards, alarms, logs, notifications | [README](./task-08-cloudwatch-monitoring/README.md) |
+| 1 | Linux Users & SSH Authentication | Linux users, sudo permissions, SSH keys, secure file permissions | [Task 1](./task-01-linux-users-ssh/README.md) |
+| 2 | Nginx on EC2 | Package installation, systemd, HTTP validation, security groups | [Task 2](./task-02-nginx-ec2/README.md) |
+| 3 | Encrypted EBS Volume | EBS encryption, block devices, XFS, mounting, persistent storage | [Task 3](./task-03-encrypted-ebs-volume/README.md) |
+| 4 | Nginx Application Load Balancer | ALB listeners, target groups, health checks, connectivity troubleshooting | [Task 4](./task-04-nginx-alb/README.md) |
+| 5 | Multi-Tier VPC Architecture | Public and private subnets, routing, Internet Gateway, NAT, network security | [Task 5](./task-05-multi-tier-vpc/README.md) |
+| 6 | IAM & Private S3 Access | IAM policies, bucket policies, least privilege, access-denied troubleshooting | [Task 6](./task-06-iam-private-s3-access/README.md) |
+| 7 | ALB & Auto Scaling | Launch templates, target groups, scaling policies, health checks | [Task 7](./task-07-alb-auto-scaling/README.md) |
+| 8 | CloudWatch Monitoring & SNS | Dashboards, alarms, CloudWatch Agent, memory and disk metrics, logs, notifications | [Task 8](./task-08-cloudwatch-monitoring/README.md) |
+| 9 | Docker Web Application on EC2 | Docker image builds, container lifecycle, Nginx, port mapping, public HTTP access | [Task 9](./task-09-docker-web-application/README.md) |
 
-### What Each Project Demonstrates
+## Project Highlights
 
-**01 — Linux Users & SSH Authentication**
+### Task 1 — Linux Users & SSH Authentication
 
-Created Linux accounts, configured controlled sudo access, set up SSH public-key authentication, and validated permissions and login behavior.
+Created Linux users, configured sudo access, and implemented SSH public-key authentication with appropriate file permissions.
 
-**02 — Nginx on EC2**
+### Task 2 — Nginx on EC2
 
-Practiced deploying a Linux web server, managing the Nginx service, configuring network access, and verifying HTTP availability.
+Installed and configured Nginx on an EC2 instance, managed the service with systemd, and verified HTTP access.
 
-**03 — Encrypted EBS Volume**
+### Task 3 — Encrypted EBS Volume
 
-Explored EBS storage, encryption, volume operations, and Linux storage administration.
+Created and attached an encrypted EBS data volume, configured a filesystem, and practiced Linux storage and mount management.
 
-**04 — Nginx Application Load Balancer**
+### Task 4 — Nginx Application Load Balancer
 
-Configured load-balancing components and explored how listeners, target groups, and health checks determine target availability.
+Configured an Application Load Balancer and target group, then reviewed health checks, listener configuration, and application connectivity.
 
-**05 — Multi-Tier VPC Architecture**
+### Task 5 — Multi-Tier VPC Architecture
 
-Worked with VPC networking, subnet segmentation, routing, and network security controls.
+Practiced public and private subnet design, routing, Internet Gateway and NAT Gateway concepts, and network access controls.
 
-**06 — IAM & Private S3 Access**
+### Task 6 — IAM & Private S3 Access
 
-Practiced IAM permissions and controlled access to private S3 resources.
+Worked with IAM permissions and private S3 access, focusing on least privilege and troubleshooting `AccessDenied` errors.
 
-**07 — ALB & Auto Scaling**
+### Task 7 — ALB & Auto Scaling
 
-Configured an Application Load Balancer, target group, launch template, Auto Scaling Group, and CPU target-tracking policy. Verified HTTP responses and target health.
+Configured an ALB, target group, launch template, and Auto Scaling Group. Practiced target health checks and scaling configuration.
 
-**08 — CloudWatch Monitoring & SNS**
+### Task 8 — CloudWatch Monitoring & SNS
 
-Configured CloudWatch dashboards and alarms, installed the CloudWatch Agent through Systems Manager, stored its configuration in Parameter Store, and verified custom memory/disk metrics and Nginx logs.
+Configured CloudWatch monitoring components, dashboards, alarms, custom operating-system metrics, log collection, and SNS notifications.
 
----
+### Task 9 — Docker Web Application on AWS EC2
 
-## 📂 Repository Structure
+Built a custom Docker image and deployed a static web application inside an Nginx container on Amazon EC2.
+
+**Implementation:**
+- Created a custom HTML/CSS web page.
+- Built the `cloudops-webapp:1.0` Docker image using `nginx:alpine`.
+- Started the `cloudops-webapp` container with restart configuration.
+- Mapped EC2 host port `8080` to container port `80`.
+- Verified the application using `curl` and received an HTTP `200 OK` response.
+- Opened the public HTTP endpoint in a browser and confirmed the application displayed successfully.
+- Captured screenshots of the Docker image, container/HTTP response, and public web page.
+
+**Task 9 resources:**
+
+- [Project README](./task-09-docker-web-application/README.md)
+- [Docker Cheatsheet](./task-09-docker-web-application/CHEATSHEET.md)
+- [Dockerfile](./task-09-docker-web-application/Dockerfile)
+- [Application HTML](./task-09-docker-web-application/app/index.html)
+- [Evidence screenshots](./task-09-docker-web-application/screenshots/)
+
+## Repository Structure
 
 ```text
 aws-linux-cloudops-labs/
 ├── README.md
 ├── MASTER-CHEATSHEET.md
 ├── task-01-linux-users-ssh/
-│   ├── README.md
-│   ├── CHEATSHEET.md
-│   └── screenshots/
 ├── task-02-nginx-ec2/
 ├── task-03-encrypted-ebs-volume/
 ├── task-04-nginx-alb/
 ├── task-05-multi-tier-vpc/
 ├── task-06-iam-private-s3-access/
 ├── task-07-alb-auto-scaling/
-└── task-08-cloudwatch-monitoring/
+├── task-08-cloudwatch-monitoring/
+└── task-09-docker-web-application/
+    ├── app/
+    │   └── index.html
+    ├── Dockerfile
+    ├── README.md
+    ├── CHEATSHEET.md
+    └── screenshots/
 ```
 
-Each task folder contains its own project documentation and may include a cheatsheet, screenshots, or configuration files.
+Each task directory contains its own project documentation and may include a cheatsheet, screenshots, or configuration files.
 
-## 🧪 Validation & Troubleshooting
+## Validation & Troubleshooting
 
-The labs emphasize validating actual behavior, not just creating AWS resources.
+The labs emphasize verifying actual behavior, not just creating AWS resources.
 
 Examples include:
 
 - Checking Linux authentication, sudo permissions, and SSH configuration.
 - Verifying Nginx service health and HTTP responses.
-- Inspecting load balancer target health and application connectivity.
-- Investigating IAM access-denied errors and network restrictions.
-- Reviewing CloudWatch metrics, alarms, and application logs.
-- Identifying root causes and documenting corrective actions.
+- Inspecting EBS devices, encryption, filesystems, and mount configuration.
+- Investigating ALB target health and application connectivity.
+- Troubleshooting VPC routes, security groups, and NACLs.
+- Diagnosing IAM access-denied errors.
+- Reviewing Auto Scaling activity and CloudWatch metrics.
+- Validating Docker containers, port mappings, logs, and HTTP responses.
+- Documenting root causes, resolutions, and validation results.
 
 Implementation results and untested scenarios are distinguished in the task-specific documentation.
 
-## 🔐 Security & Cost Awareness
+## Security & Cost Awareness
 
 - Follow least-privilege access principles.
 - Never commit private keys, credentials, or access tokens.
 - Restrict network access to required sources and ports.
 - Use encryption where appropriate.
+- Use HTTPS for production web applications.
 - Review CloudWatch log retention and monitoring charges.
 - Remove unused lab resources to control AWS costs.
+- Validate impact before changing or deleting infrastructure.
 
-## 📚 Learning Outcomes
+## Learning Outcomes
 
 - Practical exposure to AWS infrastructure and Linux operations.
-- Understanding of network traffic flow and access controls.
+- Understanding of network traffic flows and access controls.
 - Familiarity with load balancing and Auto Scaling fundamentals.
 - Experience with CloudWatch monitoring and centralized logging.
+- Hands-on Docker image creation and container deployment.
 - A structured approach to operational validation and troubleshooting.
-- Project documentation designed for technical revision and interview discussions.
+- Documentation suitable for technical revision and interview preparation.
 
-## 📝 Quick Revision
+## Quick Revision
 
-Use [`MASTER-CHEATSHEET.md`](./MASTER-CHEATSHEET.md) for consolidated revision across the portfolio when available.
+Use the [Master Cheatsheet](./MASTER-CHEATSHEET.md) for consolidated revision across all nine projects.
 
-Each project's own `CHEATSHEET.md` should contain its detailed commands, configuration notes, and task-specific troubleshooting steps.
+Each project's own `CHEATSHEET.md` contains detailed commands, configuration notes, and task-specific troubleshooting steps.
 
 ---
 
